@@ -9,6 +9,7 @@ import Login from "../Pages/Login/Login";
 import AddFood from "../Pages/Profile/AddFood/AddFood";
 import AddedFood from "../Pages/Profile/AddedFood/AddedFood";
 import UpdateFood from "../Pages/Profile/UpdateFood/UpdateFood";
+import SingleFoodDetails from "../Pages/AllFood/SingleFoodDetails/SingleFoodDetails";
 
 const Route = createBrowserRouter([
     {
@@ -23,6 +24,11 @@ const Route = createBrowserRouter([
         {
             path: '/all-food',
             element: <AllFood></AllFood>,
+        },
+        {
+            path: '/single-food-details/:id',
+            element: <SingleFoodDetails></SingleFoodDetails>,
+            loader: ({params}) => fetch(`http://localhost:5000/addfood/${params.id}`)
         },
         {
             path: '/blog',
