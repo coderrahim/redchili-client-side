@@ -54,7 +54,7 @@ const Login = () => {
                         </div>
 
                         <div className="text-center my-3">
-                            <p>Don't have an Accout? <Link className="font-bold text-primary text-xl" to='/registration'>Sign Up</Link> </p>
+                            <p>Dont have an Accout? <Link className="font-bold text-primary text-xl" to='/registration'>Sign Up</Link> </p>
                         </div>
                     </form>
                 </div>

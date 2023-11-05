@@ -10,6 +10,7 @@ const AddFood = () => {
         e.preventDefault()
         const form = e.target;
         const name = form.name.value;
+        const email = user?.email;
         const image = form.image.value;
         const category = form.category.value;
         const quantity = form.quantity.value;
@@ -18,18 +19,10 @@ const AddFood = () => {
         const country = form.country.value;
         const description = form.description.value;
 
-        const addFoodData = {
-            Food_Name: name,
-            Food_Image: image,
-            Food_Category: category,
-            Food_Quantity: quantity,
-            Food_Price: price,
-            Food_Addedby: addedby,
-            Food_Country: country,
-            Food_Description: description,
+        const addFoodData = { name, email, image, category, quantity, price, addedby, country, description,
         }
 
-        fetch('http://localhost:5000/addfood', {
+        fetch(`http://localhost:5000/addfood`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
