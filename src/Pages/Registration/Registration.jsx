@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const Registration = () => {
 
-    const {createUser} = useContext(AuthContext)
+    const { createUser } = useContext(AuthContext)
 
     const handleSignUp = e => {
         e.preventDefault()
@@ -15,53 +15,69 @@ const Registration = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        const photo = form.photo.value;
 
-        // const signUpData = {
-        //     name: name,
-        //     email: email,
-        //     password: password,
-        //     photo_url: photo,
-        // }
-
-        if(password.length < 6){
+        // PASSWORD VALIDATION
+        if (password.length < 6) {
             Swal.fire(
                 'Oopsh!',
                 `<b>${name}</b> Password Length atleast Six`,
                 'error'
-              )
-              return
+            )
+            return
         }
-        else if(!/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password)){
+        else if (!/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password)) {
             Swal.fire(
                 'Oopsh!',
                 `<b>${name}</b> Password atleast one <br> Uppercase & Lowercase`,
                 'error'
-              )
-              return
+            )
+            return
+        }
+
+        const signUpData = {
+            name: name,
+            email: email,
+            password: password,
+            photo_url: photo,
         }
 
         createUser(email, password)
-        .then(() => {
-            Swal.fire(
-                'Good Job!',
-                `Account Create Successfully`,
-                'success'
-              )
-        })
-        .catch((error) => {
-            Swal.fire(
-                'Oopsh!',
-                `${error.message}`,
-                'error'
-              )
-        })
+            .then(() => {
+
+                fetch('http://localhost:5000/users', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(signUpData)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                    })
+
+                Swal.fire(
+                    'Good Job!',
+                    `Account Create Successfully`,
+                    'success'
+                )
+            })
+            .catch((error) => {
+                Swal.fire(
+                    'Oopsh!',
+                    `${error.message}`,
+                    'error'
+                )
+            })
+
+
 
     }
 
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col ">
-                    <h1 className="text-5xl title">Create Account</h1>
+                <h1 className="text-5xl title">Create Account</h1>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handleSignUp} className="card-body">
                         <div className="form-control">
