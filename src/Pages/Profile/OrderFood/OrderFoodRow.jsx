@@ -1,10 +1,8 @@
-
 import { Link } from "react-router-dom";
 
 
-const AddedFoodRow = ({ food }) => {
+const OrderFoodRow = ({food}) => {
     const { _id, image, name, category, price,  } = food || {}    
-    
     return (
         <tr>
             <td>
@@ -28,4 +26,4 @@ const AddedFoodRow = ({ food }) => {
     );
 };
 
-export default AddedFoodRow;
+export default OrderFoodRow;

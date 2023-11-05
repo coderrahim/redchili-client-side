@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { BsCartPlus } from "react-icons/bs";
 
 const SingleFoodDetails = () => {
@@ -19,7 +19,9 @@ const SingleFoodDetails = () => {
                     <h2> Make By : {addedby} </h2>
                     <h2> Food Origin : <span className="uppercase">{country}</span> </h2>
                     <div className="pt-10">
-                        <button className="btn btn-red w-full my-5">Order Now <span className="text-xl"><BsCartPlus/></span> </button>
+                        <Link to={`/checkout/${_id}`}>
+                            <button className="btn btn-red w-full my-5">Order Now <span className="text-xl"><BsCartPlus /></span> </button>
+                        </Link>
                     </div>
 
                 </div>

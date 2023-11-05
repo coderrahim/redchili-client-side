@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 
 const Login = () => {
     const {Login} = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const handleSignIn = e => {
         e.preventDefault()
@@ -20,6 +22,7 @@ const Login = () => {
                 `Login Successful`,
                 'success'
               )
+              navigate(location?.state ? location.state : '/')
         })
         .catch((error) => {
             Swal.fire(

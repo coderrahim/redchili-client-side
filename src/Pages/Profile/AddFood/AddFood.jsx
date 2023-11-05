@@ -19,8 +19,7 @@ const AddFood = () => {
         const country = form.country.value;
         const description = form.description.value;
 
-        const addFoodData = { name, email, image, category, quantity, price, addedby, country, description,
-        }
+        const addFoodData = { name, email, image, category, quantity, price, addedby, country, description, }
 
         fetch(`http://localhost:5000/addfood`, {
             method: "POST",
@@ -31,7 +30,6 @@ const AddFood = () => {
         })
             .then(res => res.json())
             .then((data) => {
-                console.log(data)
                 if (data.insertedId) {
                     Swal.fire(
                         'Good Job!',

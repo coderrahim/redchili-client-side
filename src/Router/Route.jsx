@@ -10,6 +10,9 @@ import AddFood from "../Pages/Profile/AddFood/AddFood";
 import AddedFood from "../Pages/Profile/AddedFood/AddedFood";
 import UpdateFood from "../Pages/Profile/UpdateFood/UpdateFood";
 import SingleFoodDetails from "../Pages/AllFood/SingleFoodDetails/SingleFoodDetails";
+import PrivateRoute from "./PrivateRoute";
+import Checkout from "../Pages/AllFood/Checkout/Checkout";
+import OrderFood from "../Pages/Profile/OrderFood/OrderFood";
 
 const Route = createBrowserRouter([
     {
@@ -29,6 +32,15 @@ const Route = createBrowserRouter([
             path: '/single-food-details/:id',
             element: <SingleFoodDetails></SingleFoodDetails>,
             loader: ({params}) => fetch(`http://localhost:5000/addfood/${params.id}`)
+        },
+        {
+            path: '/checkout/:id',
+            element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
+            loader: ({params}) => fetch(`http://localhost:5000/addfood/${params.id}`)
+        },
+        {
+            path: '/my-order-food',
+            element: <OrderFood></OrderFood>,
         },
         {
             path: '/blog',
@@ -53,6 +65,7 @@ const Route = createBrowserRouter([
         {
             path: '/added-food',
             element: <AddedFood></AddedFood>,
+            loader: ({params}) => fetch(`http://localhost:5000/user/${params.id}`)            
         },
         {
             path: '/updatefood/:id',
