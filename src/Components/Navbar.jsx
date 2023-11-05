@@ -48,6 +48,15 @@ const Navbar = () => {
                                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box text-right border">
                                         <li className="text-xl my-3 font-medium"> {user?.displayName} </li>
                                         <li className="text-xl my-3 font-medium "> {user?.email} </li>
+                                        <Link to='/my-added-food' >
+                                            <button className="btn btn-red">My Added Food</button>
+                                        </Link>
+                                        <Link to='/add-food' >
+                                            <button className="btn btn-red btn-outline">Add Food</button>
+                                        </Link>
+                                        <Link to='/my-order-food' >
+                                            <button className="btn btn-red">My Order Food</button>
+                                        </Link>
 
                                     </ul>
                                 </div>

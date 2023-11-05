@@ -53,14 +53,15 @@ const Registration = () => {
                     body: JSON.stringify(signUpData)
                 })
                     .then(res => res.json())
-                    .then(() => {
+                    .then((data) => {
+                        if (data.insertedId) {
+                            Swal.fire(
+                                'Good Job!',
+                                `Account Create Successfully`,
+                                'success'
+                            )
+                        }
                     })
-
-                Swal.fire(
-                    'Good Job!',
-                    `Account Create Successfully`,
-                    'success'
-                )
             })
             .catch((error) => {
                 Swal.fire(
