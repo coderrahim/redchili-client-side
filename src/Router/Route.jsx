@@ -13,11 +13,13 @@ import SingleFoodDetails from "../Pages/AllFood/SingleFoodDetails/SingleFoodDeta
 import PrivateRoute from "./PrivateRoute";
 import Checkout from "../Pages/AllFood/Checkout/Checkout";
 import OrderFood from "../Pages/Profile/OrderFood/OrderFood";
+import Error from "../Components/Error";
 
 const Route = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
+      errorElement: <Error></Error>,
       
       children: [
         {
