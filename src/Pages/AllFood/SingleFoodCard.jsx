@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-
+import useAnimation from "../../hooks/useAnimation";
 
 const SingleFood = ({ food }) => {
+
+    const animation = useAnimation()
     const {_id, name, image, category, quantity, price, addedby, country, description } = food 
+    
     return (
-        <div>
+        <div data-aos="fade-up">
             <div className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border">
                 <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white h-96 rounded-xl bg-clip-border">
                     <img

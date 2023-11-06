@@ -4,17 +4,18 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const useUserInfo = () => {
     const {user} = useContext(AuthContext)
-    const [users, setUsers] = useState([])
+    const [dbuser, setDbuser] = useState([])
 
+    const url = `http://localhost:5000/user?email=${user?.email}`
     useEffect( () => {
-        fetch(`http://localhost:5000/users?email=${user.email}`)
+        fetch(url)
         .then(res => res.json())
         .then(data => {
-            setUsers(data)
+            setDbuser(data)
         })
-    } ,[])
+    } ,[url])
     
-    return users;
+    return dbuser;
 };
 
 export default useUserInfo;

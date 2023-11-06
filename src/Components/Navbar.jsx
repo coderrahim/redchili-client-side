@@ -2,11 +2,12 @@ import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/logo/logo.png'
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-
+import useUserInfo from "../hooks/useUserInfo";
 
 const Navbar = () => {
+    const dbuser = useUserInfo()
 
-    const {user, LogOut} = useContext(AuthContext)
+    const { user, LogOut } = useContext(AuthContext)
 
     const navMenu = <>
         <li><NavLink to='/'>Home</NavLink></li>
@@ -43,20 +44,25 @@ const Navbar = () => {
                                     <label tabIndex={0} className="btn btn-ghost shadow-xl btn-circle avatar">
                                         <div className="w-12 rounded-full">
                                             <img src={user?.photoURL} />
+                                            <img src={dbuser[0]?.photo_url} />
                                         </div>
                                     </label>
                                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box text-right border">
-                                        <li className="text-xl my-3 font-medium"> {user?.displayName} </li>
-                                        <li className="text-xl my-3 font-medium "> {user?.email} </li>
-                                        <Link to='/added-food'>
-                                            <button className="btn btn-outline btn-sm">My Added Food</button>
-                                        </Link>
-                                        <Link to='/add-food' >
-                                            <button className="btn btn-outline btn-sm my-3">Add Food</button>
-                                        </Link>
-                                        <Link to='/my-order-food' >
-                                            <button className="btn btn-outline btn-sm">My Order Food</button>
-                                        </Link>
+                                        <li className="text-md text-center font-medium"> {dbuser[0]?.name} </li>
+
+                                        <li className="text-md text-center font-medium"> {user?.displayName} </li>
+
+                                        <li className=" text-md mb-4 font-medium "> {user?.email} </li>
+
+                                        <button className="btn btn-outline btn-sm inline"><Link to='/added-food'>My Added Food</Link></button>
+
+                                        <button className="btn btn-outline btn-sm my-3">
+                                            <Link to='/add-food'>Add Food</Link>
+                                        </button>
+
+                                        <button className="btn btn-outline btn-sm">
+                                            <Link to='/my-order-food'>My Order Food</Link>
+                                        </button>
 
                                     </ul>
                                 </div>

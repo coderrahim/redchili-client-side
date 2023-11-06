@@ -5,6 +5,7 @@ import './AllFood.css'
 
 const AllFood = () => {
     const [foods, setFoods] = useState([])
+    const [loading, setLoading] = useState(true)
     const [searchText, setSearchText] = useState('')
     const [currentPage, setCurrentPage] = useState(0)
     const [itemsPerPage, setItemsPerPage] = useState(5)
@@ -12,13 +13,15 @@ const AllFood = () => {
     const numberOfPages = Math.ceil(count / itemsPerPage)
 
     // Data Load
-    useEffect( () => {
+    useEffect(() => {
+        setLoading(true)
         fetch(`http://localhost:5000/addfood?page=${currentPage}&size=${itemsPerPage}`)
-        .then(res => res.json())
-        .then(data => {
-            setFoods(data)
-        })
-    },[currentPage, itemsPerPage])
+            .then(res => res.json())
+            .then(data => {
+                setFoods(data)
+                setLoading(false)
+            })
+    }, [currentPage, itemsPerPage])
 
     const pages = [...Array(numberOfPages).keys()];
 
@@ -30,12 +33,12 @@ const AllFood = () => {
     }
 
     const handlePrevPage = () => {
-        if(currentPage > 0){
+        if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
         }
     }
     const handleNextPage = () => {
-        if(currentPage < pages.length - 1){
+        if (currentPage < pages.length - 1) {
             setCurrentPage(currentPage + 1)
         }
     }
@@ -68,42 +71,51 @@ const AllFood = () => {
                 </form>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 container">
-                {
-                    (foods.length == 0) ?
-                        <div className="flex flex-col items-center justify-center h-1/2">
-                            <h2 className="text-2xl font-bold">No product Available!</h2>
-                            <p>Food will be Add Soooon.</p>
+            {
+                loading ?
+                    <div className="flex flex-col items-center justify-center h-1/2">
+                        <span className="loading loading-ring loading-lg text-error"></span>
+                    </div>
+                    :
+                    <div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 container">
+                            {
+                                (foods.length == 0) ?
+                                    <div className="flex flex-col items-center justify-center h-1/2">
+                                        <h2 className="text-2xl font-bold">No product Available!</h2>
+                                        <p>Food will be Add Soooon.</p>
+                                    </div>
+                                    :
+                                    foods?.filter((food) => {
+                                        return searchText === '' ? food : food.name.toLowerCase().includes(searchText)
+                                    }).map(food => <SingleFood
+                                        key={food._id}
+                                        food={food}
+                                    ></SingleFood>)
+                            }
                         </div>
-                        :
-                        foods?.filter((food) => {
-                            return searchText === '' ? food : food.name.toLowerCase().includes(searchText)
-                        }).map(food => <SingleFood
-                            key={food._id}
-                            food={food}
-                        ></SingleFood>)
-                }
-            </div>
 
-            {/* PAGINATION */}
+                        {/* PAGINATION */}
 
-            <div className="flex gap-3 justify-center bg-base-200 pagination">
-                <button onClick={handlePrevPage}>Prev</button>
-                {
-                    pages.map(page => <button 
-                        key={page}
-                        className={currentPage === page ? 'selected' : undefined}
-                        onClick={() => setCurrentPage(page)}
-                        >{page}</button>)
-                }
-                <button onClick={handleNextPage}>Next</button>
-                <select value={itemsPerPage} onChange={handleItemsPerPage} className="border-black border rounded-lg">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                </select>
-            </div>
+                        <div className="flex gap-3 justify-center bg-base-200 pagination">
+                            <button onClick={handlePrevPage}>Prev</button>
+                            {
+                                pages.map(page => <button
+                                    key={page}
+                                    className={currentPage === page ? 'selected' : undefined}
+                                    onClick={() => setCurrentPage(page)}
+                                >{page}</button>)
+                            }
+                            <button onClick={handleNextPage}>Next</button>
+                            <select value={itemsPerPage} onChange={handleItemsPerPage} className="border-black border rounded-lg">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                            </select>
+                        </div>
+                    </div>
+            }
         </div>
     );
 };

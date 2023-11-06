@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
 
 
 const Login = () => {
-    const {Login} = useContext(AuthContext)
+    const { Login, googleLogin } = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -16,23 +17,45 @@ const Login = () => {
         const password = form.password.value;
 
         Login(email, password)
-        .then(() => {
-            Swal.fire(
-                'Good Job!',
-                `Login Successful`,
-                'success'
-              )
-              navigate(location?.state ? location.state : '/')
-        })
-        .catch((error) => {
-            Swal.fire(
-                'Oopsh!',
-                `${error.message}`,
-                'error'
-              )
-        })
+            .then(() => {
+                Swal.fire(
+                    'Good Job!',
+                    `Login Successful`,
+                    'success'
+                )
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch((error) => {
+                Swal.fire(
+                    'Oopsh!',
+                    `${error.message}`,
+                    'error'
+                )
+            })
 
     }
+    // Google login
+    const handleGoogleLogin = () => {
+
+        googleLogin()
+            .then((data) => {
+                console.log(data)
+                Swal.fire(
+                    'Good Job!',
+                    `Login Successul`,
+                    'success'
+                )
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch((error) => {
+                Swal.fire(
+                    'Oopsh!',
+                    `${error.message}`,
+                    'error'
+                )
+            })
+    }
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col ">
@@ -60,6 +83,12 @@ const Login = () => {
                             <p>Dont have an Accout? <Link className="font-bold text-primary text-xl" to='/registration'>Sign Up</Link> </p>
                         </div>
                     </form>
+
+                    <div onClick={handleGoogleLogin} className="flex justify-around items-center mx-5 my-8 cursor-pointer shadow-md p-2 font-semibold border rounded-full bg-transparent">
+                        <span className="text-2xl"> <FcGoogle /> </span>
+                        <span>Login with Google</span>
+                    </div>
+
                 </div>
             </div>
         </div>

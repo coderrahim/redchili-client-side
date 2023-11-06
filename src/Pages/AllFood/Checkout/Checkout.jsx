@@ -1,25 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import { Navigate, useLoaderData, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../Provider/AuthProvider";
+
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useUserInfo from "../../../hooks/useUserInfo";
 
 
 const Checkout = () => {
-    const {user} = useContext(AuthContext)
     const checkoutFood = useLoaderData()
     const { name, email, image, category, quantity, price, addedby, country, description, } = checkoutFood;
     const navigate = useNavigate()
 
-    const [dbuser, setDbuser] = useState([])
-
-    const url = `http://localhost:5000/user?email=${user?.email}`
-    useEffect( () => {
-        fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            setDbuser(data)
-        })
-    } ,[url])
+    const dbuser = useUserInfo()
 
     const handleConfirmOrder = e => {
         e.preventDefault()
