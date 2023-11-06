@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Navigate, useLoaderData } from "react-router-dom";
+import { Navigate, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -8,6 +8,7 @@ const Checkout = () => {
     const {user} = useContext(AuthContext)
     const checkoutFood = useLoaderData()
     const { name, email, image, category, quantity, price, addedby, country, description, } = checkoutFood;
+    const navigate = useNavigate()
 
     const [dbuser, setDbuser] = useState([])
 
@@ -30,7 +31,7 @@ const Checkout = () => {
         const date = form.date.value;
         const country = form.country.value;
 
-        const confirmOrderData = { name, user, email, price, date, country, image, category } 
+        const confirmOrderData = { name, user, email, price, addedby, date, country, image, category } 
         
 
         fetch('http://localhost:5000/foodOrder', {
@@ -48,7 +49,7 @@ const Checkout = () => {
                     `Order Create Successfull`,
                     'success'
                 )
-                Navigate('/my-order')
+                navigate( '/my-order-food')
             }
         })
     }
