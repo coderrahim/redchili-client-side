@@ -14,6 +14,7 @@ import PrivateRoute from "./PrivateRoute";
 import Checkout from "../Pages/AllFood/Checkout/Checkout";
 import OrderFood from "../Pages/Profile/OrderFood/OrderFood";
 import Error from "../Components/Error";
+import SingleBlogDetails from "../Pages/Blog/SingleBlogDetails";
 
 const Route = createBrowserRouter([
     {
@@ -48,6 +49,12 @@ const Route = createBrowserRouter([
         {
             path: '/blog',
             element: <Blog></Blog>,
+            loader: () => fetch('/blog.json')
+        },
+        {
+            path: '/blogDetails/:id',
+            element: <SingleBlogDetails></SingleBlogDetails>,
+            loader: () => fetch(`/blog.json`)
         },
         {
             path: '/contact',

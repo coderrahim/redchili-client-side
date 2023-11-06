@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
 
 
 const Login = () => {
@@ -17,13 +18,25 @@ const Login = () => {
         const password = form.password.value;
 
         Login(email, password)
-            .then(() => {
+            .then((result) => {
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const user = { email }
+
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.success) {
+                            navigate(location?.state ? location.state : '/')
+                        }
+                    })
+
+
                 Swal.fire(
                     'Good Job!',
                     `Login Successful`,
                     'success'
                 )
-                navigate(location?.state ? location.state : '/')
             })
             .catch((error) => {
                 Swal.fire(

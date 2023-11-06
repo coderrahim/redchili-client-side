@@ -6,7 +6,7 @@ import useUserInfo from "../../../hooks/useUserInfo";
 
 const Checkout = () => {
     const checkoutFood = useLoaderData()
-    const { name, email, image, category, quantity, price, addedby, country, description, } = checkoutFood;
+    const { name, email, image, category, quantity, price, addedby, country, description } = checkoutFood;
     const navigate = useNavigate()
 
     const dbuser = useUserInfo()

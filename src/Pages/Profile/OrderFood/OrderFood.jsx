@@ -3,6 +3,7 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import OrderFoodRow from "./OrderFoodRow";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 const OrderFood = () => {
@@ -10,13 +11,13 @@ const OrderFood = () => {
     const [order, SetOrder] = useState([])
 
     const url = `http://localhost:5000/foodOrder?email=${user?.email}`
-    useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                SetOrder(data)
-            })
-    }, [url])
+
+    useEffect( () => {
+        axios.get(url, {withCredentials: true})
+        .then(res => {
+            SetOrder(res.data)
+        })
+    } ,[url])
 
     const handleDelete = id => {
         Swal.fire({
@@ -54,10 +55,10 @@ const OrderFood = () => {
                 order.length == 0 ?
                     <div className="h-full flex flex-col items-center justify-center bg-base-200 dark:bg-gray-800 dark:text-white rounded-lg py-28">
                         <h1 className="text-4xl md:text-4xl lg:text-5xl mt-10 font-bold">Oopsh!</h1>
-                        <p className="text-xl my-6">No Food Added in Cart </p>
+                        <p className="text-xl my-6">You don't Order any Food </p>
 
                         <div className="flex gap-5">
-                            <Link to='/all-food'><button className="btn  btn-primary">Add Product</button></Link>
+                            <Link to='/all-food'><button className="btn  btn-primary">Order Product</button></Link>
 
                             <Link to='/'><button className="btn  btn-secondary">Go Home</button></Link>
                         </div>
