@@ -2,6 +2,7 @@
 import AddedFoodRow from "./AddedFoodRow";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import PageTitle from "../../../Components/PageTitle";
 
 
 const AddedFood = () => {
@@ -19,6 +20,8 @@ const AddedFood = () => {
     
     return (
         <div>
+            <PageTitle title="Added Foot" />
+            <h2 className="title">My Added Foods</h2>
             <div className="overflow-x-auto container">
                 <table className="table table-zebra">
                     {/* head */}

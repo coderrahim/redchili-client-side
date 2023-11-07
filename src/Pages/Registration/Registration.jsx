@@ -1,13 +1,16 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import PageTitle from "../../Components/PageTitle";
 
 
 
 const Registration = () => {
 
     const { createUser } = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const handleSignUp = e => {
         e.preventDefault()
@@ -60,6 +63,8 @@ const Registration = () => {
                                 `Account Create Successfully`,
                                 'success'
                             )
+                            navigate(location.state ? location.state : '/')
+
                         }
                     })
             })
@@ -76,7 +81,8 @@ const Registration = () => {
     }
 
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-pink-50">
+            <PageTitle title="Registration" />
             <div className="hero-content flex-col ">
                 <h1 className="text-5xl title">Create Account</h1>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

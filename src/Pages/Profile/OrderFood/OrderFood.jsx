@@ -4,6 +4,7 @@ import OrderFoodRow from "./OrderFoodRow";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import PageTitle from "../../../Components/PageTitle";
 
 
 const OrderFood = () => {
@@ -51,6 +52,8 @@ const OrderFood = () => {
     }
     return (
         <div>
+            <PageTitle title="Order Foot" />
+            <h2 className="title">My Order Foods</h2>
             {
                 order.length == 0 ?
                     <div className="h-full flex flex-col items-center justify-center bg-base-200 dark:bg-gray-800 dark:text-white rounded-lg py-28">

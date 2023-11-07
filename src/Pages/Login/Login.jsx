@@ -4,6 +4,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import PageTitle from "../../Components/PageTitle";
 
 
 const Login = () => {
@@ -70,7 +71,8 @@ const Login = () => {
     }
 
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-pink-50">
+            <PageTitle title="Login" />
             <div className="hero-content flex-col ">
                 <h1 className="text-5xl title">Login Now</h1>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

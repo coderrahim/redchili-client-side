@@ -2,6 +2,7 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useUserInfo from "../../../hooks/useUserInfo";
+import PageTitle from "../../../Components/PageTitle";
 
 
 const Checkout = () => {
@@ -46,6 +47,7 @@ const Checkout = () => {
 
     return (
         <div>
+            <PageTitle title="Checkout" />
             <div className=" container bg-base-100">
 
                 <div className="hero-content flex-col ">

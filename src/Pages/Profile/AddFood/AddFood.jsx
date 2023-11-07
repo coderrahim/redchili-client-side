@@ -1,10 +1,15 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import useUserInfo from "../../../hooks/useUserInfo";
+import { useNavigate } from "react-router-dom";
+import PageTitle from "../../../Components/PageTitle";
 
 
 const AddFood = () => {
     const { user } = useContext(AuthContext)
+    const dbuser = useUserInfo()
+    const navigate = useNavigate()
 
     const handleAddFood = e => {
         e.preventDefault()
@@ -20,6 +25,7 @@ const AddFood = () => {
         const description = form.description.value;
 
         const addFoodData = { name, email, image, category, quantity, price, addedby, country, description, }
+        form.reset()
 
         fetch(`http://localhost:5000/addfood`, {
             method: "POST",
@@ -36,6 +42,7 @@ const AddFood = () => {
                         `Food Added Successfull`,
                         'success'
                     )
+                    return navigate('/added-food')
                 }
             })
     }
@@ -43,6 +50,7 @@ const AddFood = () => {
 
     return (
         <div>
+            <PageTitle title="Add Food" />
             <div className=" container bg-base-100">
 
                 <div className="hero-content flex-col ">
@@ -99,7 +107,13 @@ const AddFood = () => {
                                     <label className="label">
                                         <span className="label-text">Added By</span>
                                     </label>
-                                    <input type="text" name="addedby" placeholder="" defaultValue={user?.displayName} className="input input-bordered" required />
+                                    <input type="text" name="addedby" placeholder=""
+                                        defaultValue={
+                                            user.displayName ?
+                                                user.displayName
+                                                : dbuser[0]?.name
+                                        }
+                                        className="input input-bordered" required disabled />
                                 </div>
 
                                 <div className="form-control">

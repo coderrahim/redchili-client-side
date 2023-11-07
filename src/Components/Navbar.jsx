@@ -16,7 +16,7 @@ const Navbar = () => {
         <li><NavLink to='/contact'>Contact</NavLink></li>
     </>
     return (
-        <div className="shadow-sm bg-red-50">
+        <div className="shadow-sm bg-pink-100">
             <div className="navbar h-[90px]  container">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -52,9 +52,9 @@ const Navbar = () => {
                                         </div>
                                     </label>
                                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box text-right border">
-                                        <li className="text-md text-center font-medium"> {dbuser[0]?.name} </li>
+                                        <li className="text-md text-center font-medium">{dbuser[0]?.name} </li>
 
-                                        <li className="text-md text-center font-medium"> {user?.displayName} </li>
+                                        {/* <li className="text-md text-center font-medium"> {user?.displayName} </li> */}
 
                                         <li className=" text-md mb-4 font-medium "> {user?.email} </li>
 

@@ -44,7 +44,7 @@ const Route = createBrowserRouter([
         },
         {
             path: '/my-order-food',
-            element: <OrderFood></OrderFood>,
+            element: <PrivateRoute><OrderFood></OrderFood></PrivateRoute>,
         },
         {
             path: '/blog',
@@ -70,16 +70,16 @@ const Route = createBrowserRouter([
         },
         {
             path: '/add-food',
-            element: <AddFood></AddFood>,
+            element: <PrivateRoute><AddFood></AddFood></PrivateRoute>,
         },
         {
             path: '/added-food',
-            element: <AddedFood></AddedFood>,
+            element: <PrivateRoute><AddedFood></AddedFood></PrivateRoute>,
             loader: ({params}) => fetch(`http://localhost:5000/user/${params.id}`)            
         },
         {
             path: '/updatefood/:id',
-            element: <UpdateFood></UpdateFood>,
+            element: <PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>,
             loader: ({params}) => fetch(`http://localhost:5000/addfood/${params.id}`)
         },
       ]

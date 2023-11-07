@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SingleFood from "./SingleFoodCard";
 import { useLoaderData } from "react-router-dom";
 import './AllFood.css'
+import PageTitle from "../../Components/PageTitle";
 
 const AllFood = () => {
     const [foods, setFoods] = useState([])
@@ -52,6 +53,7 @@ const AllFood = () => {
 
     return (
         <div className="container">
+            <PageTitle title="All Food" />
 
             <div className="flex justify-between flex-wrap">
                 <h2 className="title">Our Letest Food Items </h2>

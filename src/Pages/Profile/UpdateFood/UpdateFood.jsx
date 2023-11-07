@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import PageTitle from "../../../Components/PageTitle";
 
 
 
@@ -43,12 +44,14 @@ const UpdateFood = () => {
                     `Food Update Successfull`,
                     'success'
                 )
+
             }
         })
     }
 
     return (
         <div className=" container bg-base-100">
+            <PageTitle title="Update Food" />
             <div className="hero-content flex-col ">
                 <h1 className="text-5xl font-bold ">Update Food</h1>
                 <div className="card  w-full text-xl shadow-2xl bg-base-100">
@@ -103,7 +106,7 @@ const UpdateFood = () => {
                                 <label className="label">
                                     <span className="label-text">Added By</span>
                                 </label>
-                                <input type="text" name="addedby" defaultValue={addedby} placeholder=""  className="input input-bordered" required />
+                                <input type="text" name="addedby" defaultValue={addedby} placeholder=""  className="input input-bordered" required disabled />
                             </div>
 
                             <div className="form-control">
