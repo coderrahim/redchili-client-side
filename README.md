@@ -1,8 +1,17 @@
-# React + Vite
+Website Live Link:
+[https://redchili-restaurent.web.app](https://redchili-restaurent.web.app)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Website Features
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Beautiful Banner Section.
+- SignUp/ Login option for User Regisration.
+- Users can see all product but when want to Buy then need to Login.
+- About us Section to Represent in Short Description.
+- User can see Our Letest product.
+- Company Team Member with there social profile.
+- All Food Button to see All Products.
+- Blog Menu to Read some Tips & Tricks.
+- User can add Product & if need any changes of product then they can Update.
+- A Contact button to Discouse with User.
+- if he want he can Add to Cart also can delete added product if he want.
+- Users can Login with Email, password or Google.
