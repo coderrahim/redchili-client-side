@@ -4,10 +4,13 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useUserInfo from "../../../hooks/useUserInfo";
 import PageTitle from "../../../Components/PageTitle";
+import { useContext } from 'react';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 
 const Checkout = () => {
     const checkoutFood = useLoaderData()
+    const {user} = useContext(AuthContext)
     const { name, email, image, category, quantity, price, addedby, country, description } = checkoutFood 
     const navigate = useNavigate()
 
@@ -18,8 +21,8 @@ const Checkout = () => {
         const form = e.target;
         const name = form.name.value;
         const price = form.price.value;
-        const user = dbuser[0].name;
-        const email = dbuser[0].email;
+        const user = form.user.value;
+        const email = form.email.value;
         const date = form.date.value;
         const country = form.country.value;
 
@@ -77,14 +80,27 @@ const Checkout = () => {
                                     <label className="label">
                                         <span className="label-text">Buyer Name</span>
                                     </label>
-                                    <input type="text" name="addedby"  defaultValue={dbuser[0]?.name} disabled className="input input-bordered" required />
+                                    
+                                    {
+                                        user?.displayName ?
+                                        
+                                        <input type="text" name="user"  defaultValue={user.displayName} disabled className="input input-bordered" required />
+                                        :
+                                        <input type="text" name="user"  defaultValue={dbuser[0]?.name} disabled className="input input-bordered" required />
+                                    }
+
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Buyer Email</span>
                                     </label>
-                                    <input type="text" name="addedby"  defaultValue={dbuser[0]?.email} disabled className="input input-bordered" required />
+                                    {
+                                        user?.email ?
+                                        <input type="text" name="email"  defaultValue={user?.email} disabled className="input input-bordered" required />
+                                        :
+                                        <input type="text" name="email"  defaultValue={dbuser[0]?.email} disabled className="input input-bordered" required />
+                                    }
                                 </div>
 
                                 <div className="form-control">

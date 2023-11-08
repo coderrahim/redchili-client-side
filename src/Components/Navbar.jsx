@@ -52,9 +52,13 @@ const Navbar = () => {
                                         </div>
                                     </label>
                                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box text-right border">
-                                        <li className="text-md text-center font-medium">{dbuser[0]?.name} </li>
+                                        {
+                                            user?.displayName ?
+                                            <li className="text-md text-center font-medium">{user?.displayName} </li>
+                                            :
+                                            <li className="text-md text-center font-medium">{dbuser[0]?.name} </li>
 
-                                        {/* <li className="text-md text-center font-medium"> {user?.displayName} </li> */}
+                                        }
 
                                         <li className=" text-md mb-4 font-medium "> {user?.email} </li>
 

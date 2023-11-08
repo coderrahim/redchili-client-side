@@ -30,7 +30,7 @@ const OrderFoodRow = ({ food, handleDelete }) => {
 };
 OrderFoodRow.propTypes = {
     food: PropTypes.object,
-    handleDelete: PropTypes.object
+    handleDelete: PropTypes.any
 }
 
 export default OrderFoodRow;

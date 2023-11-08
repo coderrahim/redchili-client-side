@@ -5,6 +5,7 @@ Website Live Link:
 
 - Beautiful Banner Section.
 - SignUp/ Login option for User Regisration.
+- Live Chat integrated for Users Communications.
 - Users can see all product but when want to Buy then need to Login.
 - About us Section to Represent in Short Description.
 - User can see Our Letest product.
