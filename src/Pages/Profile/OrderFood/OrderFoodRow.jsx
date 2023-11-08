@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 
 const OrderFoodRow = ({ food, handleDelete }) => {
-    const { _id, image, name, category, price, addedby, date } = food || {}
+    const { _id, image, name, category, price,  date } = food || {}
 
     return (
         <tr>
@@ -27,5 +28,9 @@ const OrderFoodRow = ({ food, handleDelete }) => {
         </tr>
     );
 };
+OrderFoodRow.propTypes = {
+    food: PropTypes.object,
+    handleDelete: PropTypes.object
+}
 
 export default OrderFoodRow;

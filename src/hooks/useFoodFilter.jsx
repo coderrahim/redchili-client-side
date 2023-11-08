@@ -6,7 +6,7 @@ const useFoodFilter = () => {
     const {user} = useContext(AuthContext)
     const [food, setFood] = useState([])
 
-    const url = `http://localhost:5000/addfood?email=${user?.email}`
+    const url = `https://red-chili-server-side.vercel.app/addfood?email=${user?.email}`
     useEffect(() => {
         fetch(url)
         .then(res => res.json())

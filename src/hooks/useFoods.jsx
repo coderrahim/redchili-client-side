@@ -5,7 +5,7 @@ const useFoods = () => {
     const [food, setFood] = useState([])
 
     useEffect( () => {
-        fetch('http://localhost:5000/addfood')
+        fetch('https://red-chili-server-side.vercel.app/addfood')
         .then(res => res.json())
         .then(data => {
             setFood(data)

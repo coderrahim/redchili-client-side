@@ -11,7 +11,7 @@ const OrderFood = () => {
     const { user } = useContext(AuthContext)
     const [order, SetOrder] = useState([])
 
-    const url = `http://localhost:5000/foodOrder?email=${user?.email}`
+    const url = `https://red-chili-server-side.vercel.app/foodOrder?email=${user?.email}`
 
     useEffect( () => {
         axios.get(url, {withCredentials: true})
@@ -32,7 +32,7 @@ const OrderFood = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/foodOrder/${id}`, {
+                fetch(`https://red-chili-server-side.vercel.app/foodOrder/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())

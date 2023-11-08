@@ -27,7 +27,7 @@ const AddFood = () => {
         const addFoodData = { name, email, image, category, quantity, price, addedby, country, description, }
         form.reset()
 
-        fetch(`http://localhost:5000/addfood`, {
+        fetch(`https://red-chili-server-side.vercel.app/addfood`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

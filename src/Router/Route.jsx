@@ -30,17 +30,17 @@ const Route = createBrowserRouter([
         {
             path: '/all-food',
             element: <AllFood></AllFood>,
-            loader: () => fetch('http://localhost:5000/totalFood')
+            loader: () => fetch('https://red-chili-server-side.vercel.app/totalFood')
         },
         {
             path: '/single-food-details/:id',
             element: <SingleFoodDetails></SingleFoodDetails>,
-            loader: ({params}) => fetch(`http://localhost:5000/addfood/${params.id}`)
+            loader: ({params}) => fetch(`https://red-chili-server-side.vercel.app/addfood/${params.id}`)
         },
         {
             path: '/checkout/:id',
             element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/addfood/${params.id}`)
+            loader: ({params}) => fetch(`https://red-chili-server-side.vercel.app/addfood/${params.id}`)
         },
         {
             path: '/my-order-food',
@@ -75,12 +75,12 @@ const Route = createBrowserRouter([
         {
             path: '/added-food',
             element: <PrivateRoute><AddedFood></AddedFood></PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/user/${params.id}`)            
+            loader: ({params}) => fetch(`https://red-chili-server-side.vercel.app/user/${params.id}`)            
         },
         {
             path: '/updatefood/:id',
             element: <PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/addfood/${params.id}`)
+            loader: ({params}) => fetch(`https://red-chili-server-side.vercel.app/addfood/${params.id}`)
         },
       ]
     },

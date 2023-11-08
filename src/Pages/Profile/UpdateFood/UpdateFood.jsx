@@ -28,7 +28,7 @@ const UpdateFood = () => {
 
         const addFoodData = { name, email, image, category, quantity, price, addedby, country, description }
 
-        fetch(`http://localhost:5000/addfood/${_id}`, {
+        fetch(`https://red-chili-server-side.vercel.app/addfood/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type":"application/json"

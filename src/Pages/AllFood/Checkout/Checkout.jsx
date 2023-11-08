@@ -1,4 +1,5 @@
 
+import PropTypes from 'prop-types';
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useUserInfo from "../../../hooks/useUserInfo";
@@ -7,7 +8,7 @@ import PageTitle from "../../../Components/PageTitle";
 
 const Checkout = () => {
     const checkoutFood = useLoaderData()
-    const { name, email, image, category, quantity, price, addedby, country, description } = checkoutFood;
+    const { name, email, image, category, quantity, price, addedby, country, description } = checkoutFood 
     const navigate = useNavigate()
 
     const dbuser = useUserInfo()
@@ -25,7 +26,7 @@ const Checkout = () => {
         const confirmOrderData = { name, user, email, price, addedby, date, country, image, category } 
         
 
-        fetch('http://localhost:5000/foodOrder', {
+        fetch('https://red-chili-server-side.vercel.app/foodOrder', {
             method: "POST",
             headers: {
                 "content-type":"application/json"
@@ -119,5 +120,8 @@ const Checkout = () => {
         </div>
     );
 };
+Checkout.propTypes = {
+    Checkout: PropTypes.object
+}
 
 export default Checkout;

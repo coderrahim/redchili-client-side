@@ -10,6 +10,6 @@ const PageTitle = ({ title }) => {
     );
 };
 PageTitle.propTypes = {
-    title: PropTypes.object
+    title: PropTypes.string
 }
 export default PageTitle;

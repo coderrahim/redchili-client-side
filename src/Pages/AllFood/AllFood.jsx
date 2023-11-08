@@ -9,14 +9,14 @@ const AllFood = () => {
     const [loading, setLoading] = useState(true)
     const [searchText, setSearchText] = useState('')
     const [currentPage, setCurrentPage] = useState(0)
-    const [itemsPerPage, setItemsPerPage] = useState(5)
+    const [itemsPerPage, setItemsPerPage] = useState(9)
     const { count } = useLoaderData()
     const numberOfPages = Math.ceil(count / itemsPerPage)
 
     // Data Load
     useEffect(() => {
         setLoading(true)
-        fetch(`http://localhost:5000/addfood?page=${currentPage}&size=${itemsPerPage}`)
+        fetch(`https://red-chili-server-side.vercel.app/addfoods?page=${currentPage}&size=${itemsPerPage}`)
             .then(res => res.json())
             .then(data => {
                 setFoods(data)
@@ -28,7 +28,6 @@ const AllFood = () => {
 
     const handleItemsPerPage = e => {
         const val = parseInt(e.target.value)
-        console.log(val)
         setItemsPerPage(val)
         setCurrentPage(0)
     }

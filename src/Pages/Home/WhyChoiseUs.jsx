@@ -17,8 +17,8 @@ const WhyChoiseUs = () => {
                                 <p className="text-2xl font-medium bg-blue-100 p-5 rounded-lg"> <MdHome /> Home Delivary</p>
                             </div>
                             <div className="flex gap-5 my-3">
-                                <p className="text-2xl font-medium bg-blue-100 p-5 rounded-lg"> <MdEditLocationAlt /> Best Quality</p>
-                                <p className="text-2xl font-medium bg-red-100 p-5 rounded-lg"> <MdOutlineReorder /> Home Delivary</p>
+                                <p className="text-2xl font-medium bg-blue-100 p-5 rounded-lg"> <MdEditLocationAlt />Fast Response</p>
+                                <p className="text-2xl font-medium bg-red-100 p-5 rounded-lg"> <MdOutlineReorder />Best Discount</p>
                             </div>
                         </div>
                     </div>

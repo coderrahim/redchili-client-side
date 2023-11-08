@@ -6,7 +6,8 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Team = () => {
     return (
-        <div className='container'>
+        <div className='bg-pink-100'>
+            <div className='container'>
             <h2 className='title'>Our <span className='text-red-500'>Team</span> </h2>
             <div className='flex flex-wrap justify-center gap-5'>
                 <div className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border">
@@ -110,6 +111,7 @@ const Team = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

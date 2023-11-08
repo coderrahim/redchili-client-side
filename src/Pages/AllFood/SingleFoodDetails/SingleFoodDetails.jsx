@@ -1,24 +1,16 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { BsCartPlus } from "react-icons/bs";
-import Swal from "sweetalert2";
 import useFoodFilter from "../../../hooks/useFoodFilter";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const SingleFoodDetails = () => {
-    const {user} = useContext(AuthContext)
-    const food = useFoodFilter()
-    console.log(food)
+    const { user } = useContext(AuthContext)
+    const food = useFoodFilter();
     const foodDetails = useLoaderData();
     const { _id, name, image, category, quantity, price, addedby, country, description } = foodDetails
 
-    const handleFoodOrder = () => {
-        Swal.fire(
-            'Try Deferent Food!',
-            `You can't Order to your Food`,
-            'error'
-        )
-    }
+    
 
     return (
         <div className="container">
@@ -34,20 +26,26 @@ const SingleFoodDetails = () => {
                     <h2> Make By : {addedby} </h2>
                     <h2> Food Origin : <span className="uppercase">{country}</span> </h2>
 
-                    {
-                        food[0]?.email !== user?.email ?
-
-                            <div className="pt-10">
-                                <Link to={`/checkout/${_id}`}>
+                    {/* {
+                      food[0]?.email === user.email ?
+    
+                                <div onClick={handleFoodOrder} className="pt-10">
                                     <button className="btn btn-red w-full my-5">Order Now<span className="text-xl"><BsCartPlus /></span> </button>
-                                </Link>
-                            </div>
-                            :
-                            <div onClick={handleFoodOrder} className="pt-10">
-                                <button className="btn btn-red w-full my-5">Order Now<span className="text-xl"><BsCartPlus /></span> </button>
-                            </div>
+                                </div>
+                                :
+    
+                                <div className="pt-10">
+                                    <Link to={`/checkout/${_id}`}>
+                                        <button className="btn btn-red w-full my-5">Order Now<span className="text-xl"><BsCartPlus /></span> </button>
+                                    </Link>
+                                </div>                    
+                    } */}
 
-                    }
+                    <div className="pt-10">
+                        <Link to={`/checkout/${_id}`}>
+                            <button className="btn btn-red w-full my-5">Order Now<span className="text-xl"><BsCartPlus /></span> </button>
+                        </Link>
+                    </div>
 
                 </div>
             </div>

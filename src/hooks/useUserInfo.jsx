@@ -6,7 +6,7 @@ const useUserInfo = () => {
     const {user} = useContext(AuthContext)
     const [dbuser, setDbuser] = useState([])
 
-    const url = `http://localhost:5000/user?email=${user?.email}`
+    const url = `https://red-chili-server-side.vercel.app/user?email=${user?.email}`
     useEffect( () => {
         fetch(url)
         .then(res => res.json())
